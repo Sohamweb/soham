@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login and Sign-Up</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.8)), url('car index/login_back.jpg') no-repeat center center/cover;
+      background-color: #0d0d0d;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .header {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #816721, #fde399, #816721);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .container {
+      width: 400px;
+      padding: 40px;
+      border-color: #fff;
+      border: #fff;
+      background-color: transparent;
+      border-radius: 10px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+      position: relative;
+      text-align: center;
+      backdrop-filter: blur(3px);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #d5b96a;
+    }
+
+    .form-group {
+      position: relative;
+      background: transparent;
+      margin-bottom: 20px;
+      text-align: left;
+      border-bottom: 3px solid #fff;
+    }
+
+    .form-group label {
+      background: transparent;
+      display: block;
+      font-size: 14px;
+      margin-bottom: 5px;
+      color: #ffffff;
+    }
+
+    .form-group input {
+      background: transparent;
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: none;
+      border-radius: 10px;
+      background: transparent;
+      color: #fff;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      color: #000;
+      background: linear-gradient(90deg, #816721, #fde399, #816721);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #feb47b, #ff7e5f);
+    }
+
+    .toggle-link {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #aaa;
+      cursor: pointer;
+    }
+
+    .toggle-link:hover {
+      color: #ffd700;
+      text-decoration: underline;
+    }
+
+    /* Hide the sign-up form by default */
+    #signup-form {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html"><div class="header"> SOHAM </div></a>
+  <div class="container">
+    <!-- Login Form -->
+    <form id="login-form">
+      <h2>Login</h2>
+      <div class="form-group">
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" placeholder="Enter your email" required>
+      </div>
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" placeholder="Enter your password" required>
+      </div>
+      <button type="submit">Login</button>
+      <p class="toggle-link" onclick="toggleForms()">Don't have an account? Sign Up</p>
+    </form>
+
+    <!-- Sign-Up Form -->
+    <form id="signup-form">
+      <h2>Sign Up</h2>
+      <div class="form-group">
+        <label for="signup-name">Full Name</label>
+        <input type="text" id="signup-name" placeholder="Enter your full name" required>
+      </div>
+      <div class="form-group">
+        <label for="signup-email">Email</label>
+        <input type="email" id="signup-email" placeholder="Enter your email" required>
+      </div>
+      <div class="form-group">
+        <label for="signup-password">Password</label>
+        <input type="password" id="signup-password" placeholder="Enter your password" required>
+      </div>
+      <div class="form-group">
+        <label for="signup-confirm-password">Confirm Password</label>
+        <input type="password" id="signup-confirm-password" placeholder="Confirm your password" required>
+      </div>
+      <button type="submit">Sign Up</button>
+      <p class="toggle-link" onclick="toggleForms()">Already have an account? Login</p>
+    </form>
+  </div>
+
+  <script>
+    // JavaScript to toggle between forms
+    function toggleForms() {
+      const loginForm = document.getElementById('login-form');
+      const signupForm = document.getElementById('signup-form');
+
+      if (loginForm.style.display === 'none') {
+        loginForm.style.display = 'block';
+        signupForm.style.display = 'none';
+      } else {
+        loginForm.style.display = 'none';
+        signupForm.style.display = 'block';
+      }
+    }
+
+    // Handling Login Form Submission
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+
+      // Simulate login validation
+      alert(`Logging in with\nEmail: ${email}\nPassword: ${password}`);
+      // Add your backend login logic here
+    });
+
+    // Handling Sign-Up Form Submission
+    document.getElementById('signup-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const name = document.getElementById('signup-name').value;
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+      const confirmPassword = document.getElementById('signup-confirm-password').value;
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      // Simulate sign-up validation
+      alert(`Signing up with\nName: ${name}\nEmail: ${email}`);
+      // Add your backend sign-up logic here
+    });
+  </script>
+</body>
+</html>

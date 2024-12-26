@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soham Tours & Travels</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: #fff;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #222;
+            position: sticky;
+            top: 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #816721, #fde399, #816721);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .login {
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            border: 1px solid #ffffff;
+            text-decoration: none;
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.8)), url('car index/img1.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .image-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        img {
+            max-width: 40%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .options-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .option {
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            padding: 1.5rem;
+            width: 150px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .option:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .option-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .option-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #e0c068, #e0c088);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: #222;
+            padding: 1.5rem;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            color: #e0c068;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #aaa;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0;
+        }
+
+        .card ul li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            color: #ddd;
+        }
+
+        .card ul li .fa {
+            margin-right: 0.5rem;
+            color: #e0c068;
+        }
+
+        .faq-button {
+            margin: 2rem auto; /* Center horizontally */
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #000;
+            background: #e0c068;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block; /* Ensures the button respects auto margin */
+        }
+
+        .faq-button:hover {
+            background: #d1b058;
+        }
+
+        .footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            background-color: #111;
+            padding: 20px 40px;
+            color: #bdbdbd;
+        }
+
+        .footer-column {
+            flex: 1;
+            margin: 0 20px;
+            min-width: 150px;
+        }
+
+        .footer-column h4 {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin: 5px 0;
+        }
+
+        .footer-column ul li a {
+            color: #bdbdbd;
+            text-decoration: none;
+        }
+
+        .footer-column ul li a:hover {
+            color: #fff;
+        }
+
+        .footer-logo {
+            color: #d5b96a;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-weight: bold;
+            background-color: #fff;
+        }
+
+        .social-icons a i {
+            color: #000;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            color: #bdbdbd;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="logo">SOHAM</div>
+    <a href="login.html" class="login">Login</a>
+</header>
+
+<section class="hero">
+    <div class="hero-overlay"></div>
+</section>
+<div class="image-container">
+    <img src="car index/hero_logo.png" alt="Hero Logo">
+</div>
+<div class="image-container">
+    <img src="car index/sub_hero_text.png" alt="Hero Text">
+</div>
+
+<section class="options-container">
+    <a href="Pick&Drop.html" class="option">
+        <div class="option-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="option-title">Pick & Drop Local</div>
+    </a>
+    <a href="Daily.html" class="option">
+        <div class="option-icon"><i class="fas fa-clock"></i></div>
+        <div class="option-title">Daily Fix</div>
+    </a>
+    <a href="airport-transfers.html" class="option">
+        <div class="option-icon"><i class="fas fa-plane"></i></div>
+        <div class="option-title">Airport Transfers</div>
+    </a>
+    <a href="Outstaion-trips.html" class="option">
+        <div class="option-icon"><i class="fas fa-suitcase-rolling"></i></div>
+        <div class="option-title">Outstation Trips</div>
+    </a>
+</section>
+
+<section class="container">
+    <h1 class="title">Experience Delight</h1>
+    <div class="cards">
+        <div class="card">
+            <h2>Premium Service</h2>
+            <p>CNG/petrol ertiga cars and polite drivers who take care of guests.</p>
+            <ul>
+                <li><i class="fas fa-water"></i>&nbsp;&nbsp; Water, tissues included</li>
+                <li><i class="fas fa-suitcase"></i>&nbsp;&nbsp; Seats 4 adults, fits 6 bags</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2>We Empathise</h2>
+            <p>Empathetic human support on WhatsApp, calls, and email. No bots, no spam.</p>
+            <ul>
+                <li><i class="fas fa-user"></i>&nbsp;&nbsp; Human support</li>
+                <li><i class="fas fa-phone"></i>&nbsp;&nbsp; Hassle-free contact</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2>Pet Friendly</h2>
+            <p>The purr-fect choice for hassle-free travel with your furry family members.</p>
+            <ul>
+                <li><i class="fas fa-paw"></i>&nbsp;&nbsp; Pet-friendly travel</li>
+            </ul>
+        </div>
+    </div>
+    <button class="faq-button" onclick="window.location.href='FAQ.html'">
+        Read The FAQs
+    </button>
+</section>
+
+<footer class="footer">
+    <div class="footer-column">
+        <div class="footer-logo">SOHAM</div>
+        <p>Panvel, Kharghar, Mumbai</p>
+    </div>
+    <div class="footer-column">
+        <h4>Company</h4>
+        <ul>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="#">Privacy and policy</a></li>
+            <li><a href="#">Cancellation & refund</a></li>
+            <li><a href="#">Terms and conditions</a></li>
+        </ul>
+    </div>
+    <div class="footer-column">
+        <h4>Services</h4>
+        <ul>
+            <li><a href="Airport-transfers.html">Airport transfers</a></li>
+            <li><a href="Pick&Drop.html">in local mumbaiCity </a></li>
+            <li><a href="Outstaion-trips.html">Outstation trips</a></li>
+            <li><a href="">Event partnerships</a></li>
+        </ul>
+    </div>
+    <div class="footer-column">
+        <h4>Contact Us On</h4>
+        <ul>
+            <li><a href="mailto:sohambade007@gmail.com">Sohambade007@gmail.com</a></li>
+            <li><a href="https://wa.me/+918108738764">WhatsApp us</a></li>
+        </ul>
+    </div>
+    <div class="footer-column">
+        <h4>Explore Our World</h4>
+        <div class="social-icons">
+            <a href="https://google.com"><i class="fab fa-facebook"></i></a>
+            <a href="https://google.com"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</footer>
+<div class="footer-bottom">
+    <p>2024 &copy; All rights reserved.</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outstation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.8)), url('car index/login_back.jpg') no-repeat center center/cover;
+    background-color: #0d0d0d;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+.header {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #816721, #fde399, #816721);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background: #111;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            background-color: transparent;
+            backdrop-filter: blur(3px);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            background: #222;
+            border: 1px solid #333;
+        }
+
+        .tab.active {
+            background: #444;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            background-color: #222;
+            color: #fff;
+        }
+
+        input::placeholder {
+            color: #888;
+        }
+
+        .add-stop-btn, .return-btn {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 14px;
+            background-color: #555;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .add-stop-btn:hover, .return-btn:hover {
+            opacity: 0.9;
+        }
+
+        .send-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(90deg, #816721, #fde399, #816721);
+            color: #fff;
+            font-size: 16px;
+            padding: 15px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .send-btn:hover {
+            background-color: #54420f;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .stop-input {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .stop-input input {
+            flex: 1;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Cloudflare Logo -->
+    <div class="header">
+        <div class="header-text"><a href="index.html">SOHAM</a></div>
+    </div>
+    <div class="container">
+        <h1>Outstation</h1>
+        <div class="tabs">
+            <div class="tab active" id="oneway-tab">One Way</div>
+            <div class="tab" id="roundtrip-tab">Round Trip</div>
+        </div>
+        <form id="rentalForm">
+            <div class="form-group">
+                <label for="city">City</label>
+                <select id="city" name="city">
+                    <option value="">Outstation City</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="pickup">Pick-up Location</label>
+                <div class="stop-input">
+                    <input type="text" id="pickup" name="pickup" placeholder="Pick-up" required>
+                    <button type="button" class="return-btn" id="return">Return</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="add-stop-btn" id="add-stop">+ Add Stop</button>
+            </div>
+            <div class="form-group">
+                <label for="dropoff">Drop-off Location</label>
+                <input type="text" id="dropoff" name="dropoff" placeholder="Drop-off" required>
+            </div>
+            <div class="form-group">
+                <label for="schedule">Schedule</label>
+                <input type="datetime-local" id="schedule" name="schedule" required>
+            </div>
+            <button type="button" class="send-btn" id="checkFare">Check Fare</button>
+        </form>
+    </div>
+
+    <script>
+        const onewayTab = document.getElementById('oneway-tab');
+        const roundtripTab = document.getElementById('roundtrip-tab');
+        const checkFareButton = document.getElementById('checkFare');
+
+        onewayTab.addEventListener('click', () => {
+            onewayTab.classList.add('active');
+            roundtripTab.classList.remove('active');
+        });
+
+        roundtripTab.addEventListener('click', () => {
+            roundtripTab.classList.add('active');
+            onewayTab.classList.remove('active');
+        });
+
+        document.getElementById('add-stop').addEventListener('click', function () {
+            const stopInput = document.createElement('div');
+            stopInput.className = 'stop-input';
+            stopInput.innerHTML = `
+                <input type="text" placeholder="Enter stop location" class="stop-input-field">
+                <button type="button" class="remove-stop-btn">Remove</button>`;
+            const stopsContainer = document.querySelector('.form-group:nth-child(4)');
+            stopsContainer.appendChild(stopInput);
+
+            stopInput.querySelector('.remove-stop-btn').addEventListener('click', function () {
+                stopsContainer.removeChild(stopInput);
+            });
+        });
+
+        document.getElementById('return').addEventListener('click', function () {
+            alert('Return button clicked! Add logic as needed.');
+        });
+
+        checkFareButton.addEventListener('click', function () {
+            const city = document.getElementById('city').value;
+            const pickup = document.getElementById('pickup').value;
+            const dropoff = document.getElementById('dropoff').value;
+            const schedule = document.getElementById('schedule').value;
+            const activeTab = document.querySelector('.tab.active').innerText;
+
+            const message = `Tab: ${activeTab}\nCity: ${city}\nPick-up: ${pickup}\nDrop-off: ${dropoff}\nSchedule: ${schedule}`;
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=918108738764&text=${encodeURIComponent(message)}`;
+
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+</body>
+</html>

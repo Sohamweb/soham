@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Page</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.8)), url('car index/login_back.jpg') no-repeat center center/cover;
+            background-color: #0d0d0d;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #f7d87c, #d9b058);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+            flex: 1;
+            background-color: transparent;
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            overflow-y: auto;
+        }
+
+        .faq-header {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #f7d87c;
+        }
+
+        .faq-tabs {
+            backdrop-filter: blur(3px);
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            margin-bottom: 30px;
+        }
+
+        .faq-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .faq-tabs button {
+            border: none;
+            background-color: transparent;
+            color: #fff;
+            font-size: 1rem;
+            margin: 0 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-tabs button.active {
+            background: linear-gradient(90deg, #f7d87c, #d9b058);
+            color: #000;
+            font-weight: bold;
+        }
+
+        .faq-section {
+            backdrop-filter: blur(3px);
+            display: none;
+            transform: translateX(-100%);
+            opacity: 0;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .faq-section.active {
+            display: block;
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #ffffff;
+        }
+
+        .faq-answer {
+            display: none;
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        .faq-question:after {
+            content: '\25BC';
+            float: right;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.open:after {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer.show {
+            display: block;
+        }
+
+        .footer {
+            background-color: #111;
+            color: #bdbdbd;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .footer-column {
+            flex: 1;
+            margin: 0 10px;
+            min-width: 150px;
+            text-align: left;
+        }
+
+        .footer-column h4 {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin: 5px 0;
+        }
+
+        .footer-column ul li a {
+            color: #bdbdbd;
+            text-decoration: none;
+        }
+
+        .footer-column ul li a:hover {
+            color: #fff;
+        }
+
+        .footer-logo {
+            color: #d5b96a;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-weight: bold;
+            background-color: #fff;
+        }
+
+        .social-icons a i {
+            color: #000;
+        }
+
+        .footer-bottom {
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html"><div class="header"> SOHAM </div></a>
+    <div class="container">
+        <div class="faq-container">
+            <div class="faq-header">Frequently Asked Questions</div>
+            <div class="faq-tabs">
+                <button class="tab-link active" data-tab="general">General</button>
+                <button class="tab-link" data-tab="payment">Payment</button>
+                <button class="tab-link" data-tab="booking">Booking</button>
+                <button class="tab-link" data-tab="airport-transfers">Airport Transfers</button>
+            </div>
+
+            <div id="general" class="faq-section active">
+                <div class="faq-item">
+                    <div class="faq-question">What type of car do you use?</div>
+                    <div class="faq-answer">We use the BYD e6, which is an Innova-sized electric MPV designed to comfortably seat 4 adults and has enough boot space for 4-5 large suitcases.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can I book a ride for someone else?</div>
+                    <div class="faq-answer">Yes, you can book a ride for someone else by providing their details during the booking process.</div>
+                </div>
+            </div>
+
+            <div id="payment" class="faq-section">
+                <div class="faq-item">
+                    <div class="faq-question">What payment methods do you accept?</div>
+                    <div class="faq-answer">We accept credit cards, debit cards, and online payment options.</div>
+                </div>
+            </div>
+
+            <div id="booking" class="faq-section">
+                <div class="faq-item">
+                    <div class="faq-question">What is your cancellation policy?</div>
+                    <div class="faq-answer">You can cancel your booking up to 24 hours in advance for a full refund.</div>
+                </div>
+            </div>
+
+            <div id="airport-transfers" class="faq-section">
+                <div class="faq-item">
+                    <div class="faq-question">How long does it take to process a refund?</div>
+                    <div class="faq-answer">Refunds are processed within 5-7 business days.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <div class="footer-logo">SOHAM</div>
+                <p>Panvel, Kharghar, Mumbai</p>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Privacy and policy</a></li>
+                    <li><a href="#">Cancellation & refund</a></li>
+                    <li><a href="#">Terms and conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="Airport-transfers.html">Airport transfers</a></li>
+                    <li><a href="Pick&Drop.html">In Local Mumbai City</a></li>
+                    <li><a href="Outstaion-trips.html">Outstation trips</a></li>
+                    <li><a href="">Event partnerships</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact Us On</h4>
+                <ul>
+                    <li><a href="mailto:sohambade007@gmail.com">Sohambade007@gmail.com</a></li>
+                    <li><a href="https://wa.me/+918108738764">WhatsApp us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Explore Our World</h4>
+                <div class="social-icons">
+                    <a href="https://facebook.com"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>2024 &copy; All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab-link');
+        const sections = document.querySelectorAll('.faq-section');
+        const questions = document.querySelectorAll('.faq-question');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === tab.dataset.tab) {
+                        section.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        questions.forEach(question => {
+            question.addEventListener('click', () => {
+                question.classList.toggle('open');
+                const answer = question.nextElementSibling;
+                answer.classList.toggle('show');
+            });
+        });
+    </script>
+</body>
+</html>
